@@ -34,5 +34,38 @@ $listarCod = $clientes->controllerListarCod($cod);
     <label for="telefone"> Telefone
     </label>
     <input id="telefone" name="telefone" type="text" value="<?=$listarCod['telefone'];?>">
-    <input type="submit" name="cadastro" value="Atualizar">
+    <input type="submit" name="atualizar" value="Atualizar">
 </form>
+
+
+<?php
+//** Recebe as variavés do formulário */
+
+if(isset($_REQUEST['atualizar'])){
+
+$nome = $_REQUEST['nome'];
+$cpf = $_REQUEST['cpf'];
+$email = $_REQUEST['email'];
+$telefone = $_REQUEST['telefone'];
+
+
+$controllerCliente = new controllerCliente();
+
+/** modelAtualizar
+*@param mixed $nome
+*@param mixed $cpf
+*@param mixed $email
+*@param mixed $telefone
+*@param mixed $cod
+*@return 'true — || false'
+ */
+$cadastrar = $controllerCliente->modelAtualizar($nome,$cpf,$email,$telefone,$cod);
+
+if($cadastrar == true){
+    echo "Cliente atualizado com sucesso!";
+}else{
+    echo "Não foi possíver cadastrar!";
+
+}
+}
+?>

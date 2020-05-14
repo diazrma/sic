@@ -6,14 +6,15 @@
  *  @access public
  *  @example Classe modelCliente.
  **/
-
 require_once '../config/config.php';
-
 class modelCliente extends Conexao
 {
-    /**
-     * modelCadastrar
-     * @return 'true || false'
+    /** modelCadastrar
+    *@param mixed $nome
+    *@param mixed $cpf
+    *@param mixed $email
+    *@param mixed $telefone
+    *@return 'true — || false'
      */
     public function modelCadastrar($nome,$cpf,$email,$telefone)
     {
@@ -30,30 +31,27 @@ class modelCliente extends Conexao
             return false;
         }
     }
-    /**
-     * modelListar
-     * @return 'Array de clientes'
+     /** modelListarCod
+     *@return Array
      */
     public function modelListar()
     {
         try {
-        $resultado = array();
         $pdo = $this->conecta()->prepare('SELECT cod_cliente,nome,cpf,email,telefone FROM clientes');
         $pdo->execute();
-        $resultado = $pdo->fetch(PDO::FETCH_ASSOC);
+        $resultado = $pdo->fetchAll(PDO::FETCH_ASSOC);
         return $resultado;
     } catch (Exception $e) {
         echo 'Erro: ' . $e->getMessage();
     }
     }
-    /**
-     * modelListarCod
-     * @return 'Cliente único'
+    /** modelListarCod
+    *@param mixed $cod
+    *@return Array
      */
     public function modelListarCod($cod)
     {
         try {
-            $resultado = array();
             $pdo = $this->conecta()->prepare('SELECT cod_cliente,nome,cpf,email,telefone FROM clientes WHERE cod_cliente = ?');
             $pdo->bindValue(1,$cod);
             $pdo->execute();
@@ -63,10 +61,13 @@ class modelCliente extends Conexao
             echo 'Erro: ' . $e->getMessage();
         }
     }
-    /**
-     * modelAtualizar
-     * @return 'true || false'
-     */
+   /** modelAtualizar
+    *@param mixed $nome
+    *@param mixed $cpf
+    *@param mixed $email
+    *@param mixed $telefone
+    *@return 'true — || false'
+    */
     public function modelAtualizar($nome,$cpf,$email,$telefone,$cod)
     {
         $pdo = $this->conecta()->prepare( 'UPDATE clientes SET nome=?, cpf=?, email=?, telefone=? WHERE cod_cliente =?' );
@@ -82,8 +83,7 @@ class modelCliente extends Conexao
             return false;
         }
     }
-    /**
-     * modelRemover
+    /** modelRemover
      * @return 'true || false'
      */
     public function modelRemover($cod)
@@ -91,7 +91,6 @@ class modelCliente extends Conexao
         try {
             $pdo = $this->conecta()->prepare( 'DELETE FROM clientes  WHERE cod_cliente = ?' );
             $pdo->bindValue( 1, $cod );
-        
             $pdo->execute();
             $count = $pdo->rowCount();
             if ( $count == 0 ) {
