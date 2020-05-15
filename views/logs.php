@@ -45,7 +45,6 @@ $lista = $logs->controllerListar($filtro);
                 <th scope="col">AÇÃO</th>
                 <th scope="col">DATA</th>
                 <th scope="col">HORA</th>
-
             </tr>
         </thead>
         <?php if (count($lista) == 0) {
@@ -57,8 +56,6 @@ $lista = $logs->controllerListar($filtro);
             <td scope="row"><?= $valor['acao']; ?></td>
             <td scope="row"><?= date("d/m/Y", strtotime($valor['data'])); ?></td>
             <td scope="row"><?= $valor['time']; ?></td>
-
-
         </tr>
         <?php }
     }?>
