@@ -1,5 +1,4 @@
 <?php
-
 /** viewListar
  *  @author Rodrigo Cardoso
  *  @version 1.0
@@ -8,15 +7,15 @@
  *  @example Classe viewListar.
  **/
 /**  Inclui arquivos */
-require_once('head.php');
-require_once('../controllers/controllerCliente.class.php');
-$clientes = new controllerCliente();
+require_once ('head.php');
+require_once('../controllers/controllerLogs.class.php');
+$logs = new controllerLogs();
 /** controllerListar
- * @return 'Array — de clientes'
+ * @return 'Array — de logs'
  */
 $filtro = filter_input(INPUT_POST, "filtro", FILTER_SANITIZE_STRING);
 
-$lista = $clientes->controllerListar($filtro);
+$lista = $logs->controllerListar($filtro);
 ?>
 <div class="container">
     <form method="post" action="#">
@@ -26,14 +25,15 @@ $lista = $clientes->controllerListar($filtro);
                 <div class="form-group">
                     <label for="filtro">Pesquisar</label>
                     <div class="input-group">
-                        <input id="filtro" name="filtro" type="search" class="form-control" placeholder="Nome">
+                        <input id="filtro" name="filtro" type="search" class="form-control" placeholder="Ação">
                         <div class="input-group-prepend">
                             <input type="submit" name="pesquisa" class="btn btn-success" value="Pesquisar">
                         </div>
                     </div>
                 </div>
                 <a href="../index.php" class="btn btn-info text-light  ml-10"> Início</a>
-                <a href="cadastro.php" class="btn btn-primary "> Novo </a>
+                <a href="#" onclick="limparLogs()" class="btn btn-danger ml-10"> Limpar logs</a>
+
             </div>
 
         </div>
@@ -42,29 +42,26 @@ $lista = $clientes->controllerListar($filtro);
         <thead class="thead-dark">
             <tr>
                 <th scope="col">CÓDIGO</th>
-                <th scope="col">NOME</th>
-                <th scope="col">CPF</th>
-                <th scope="col">E-MAIL</th>
-                <th scope="col">TELEFONE</th>
-                <th scope="col">AÇÕES</th>
+                <th scope="col">AÇÃO</th>
+                <th scope="col">DATA</th>
+                <th scope="col">HORA</th>
+
             </tr>
         </thead>
-
         <?php if (count($lista) == 0) {
             echo '<tr><td>Nenhum registro encontrado!</td></tr>';
         } else {
             foreach ($lista as $valor) { ?>
-                <tr>
-                    <td scope="row"><?= $valor['cod_cliente']; ?></td>
-                    <td scope="row"><?= $valor['nome']; ?></td>
-                    <td scope="row"><?= $valor['cpf']; ?></td>
-                    <td scope="row"><?= $valor['email']; ?></td>
-                    <td scope="row"><?= $valor['telefone']; ?></td>
-                    <td scope="row"><a href="editar.php?cod=<?= $valor['cod_cliente']; ?>">EDITAR</a>
-                        <a href="#" onclick="remover('<?= $valor['nome'] ?>','<?= $valor['cod_cliente'] ?>')">REMOVER</a></td>
-                </tr>
+        <tr>
+            <td scope="row"><?= $valor['cod_log']; ?></td>
+            <td scope="row"><?= $valor['acao']; ?></td>
+            <td scope="row"><?= date("d/m/Y", strtotime($valor['data'])); ?></td>
+            <td scope="row"><?= $valor['time']; ?></td>
+
+
+        </tr>
         <?php }
-        } ?>
+    }?>
     </table>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
