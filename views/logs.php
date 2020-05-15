@@ -31,7 +31,7 @@ $lista = $logs->controllerListar($filtro);
                         </div>
                     </div>
                 </div>
-                <a href="../index.php" class="btn btn-info text-light  ml-10"> Início</a>
+                <a href="../index.php" class="btn btn-info text-light  ml-10">Página Inicial</a>
                 <a href="#" onclick="limparLogs()" class="btn btn-danger ml-10"> Limpar logs</a>
 
             </div>

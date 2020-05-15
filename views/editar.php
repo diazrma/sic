@@ -53,7 +53,7 @@ $listarCod = $clientes->controllerListarCod($cod);
         <div class="form-group">
             <div class="col-6">
                 <input type="submit" name="atualizar" class="btn btn-success float-right" value="Atualizar">
-                <a href="../index.php" class="btn btn-info text-light  ml-10"> Início</a>
+                <a href="../index.php" class="btn btn-info text-light  ml-10">Página Inicial</a>
                 <a href="cadastro.php" class="btn btn-primary ml-10"> Novo Cliente</a>
                 <a href="listar.php" class="btn btn-secondary  ml-10"> Listar Clientes</a>
             </div>

@@ -50,7 +50,7 @@ require_once ('../controllers/controllerCliente.class.php');
         </div>
         <div class="form-group">
             <div class="col-6">
-                <a href="../index.php" class="btn btn-info text-light  ml-10"> Início</a>
+                <a href="../index.php" class="btn btn-info text-light  ml-10">Página Inicial</a>
                 <a href="listar.php" class="btn btn-primary "> Listar Clientes </a>
                 <input type='submit' name='cadastro' class="btn btn-success float-right" value='Cadastrar'>
             </div>
